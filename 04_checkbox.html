@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>04 checkbox while and for loop</title>
+<style>
+/* //选项卡 */
+#div3 .active{
+    /* 按钮背景为黄色 */
+    background: yellow;
+}
+#div3 div{
+    width: 200px;
+    height: 200px;
+    background: #ccc;
+    border:1px solid #999;
+    display: none;
+}
+
+/* // js简易日历 */
+#div5 {
+    width: 200px;
+    height: 200px;
+    background: #ccc;
+}
+
+
+</style>
+
+<script>    
+window.onload=function(){
+    var oButtonAll=document.getElementById('btn1');
+    var oButtonNone=document.getElementById('btn2');
+    var oButtonRevert=document.getElementById('btn3');
+    var oD=document.getElementById('div2'); 
+    var oC=oD.getElementsByTagName('input');
+    
+  oButtonAll.onclick=function(){
+        for(var i=0;i<oC.length;i++){
+        oC[i].checked=true;
+    }  
+    }
+  oButtonNone.onclick=function(){
+        for(var i=0;i<oC.length;i++){
+        oC[i].checked=false;
+    }  
+    }
+    // 反选
+  oButtonRevert.onclick=function(){
+        for(var i=0;i<oC.length;i++){
+            if(oC[i].checked==true){
+               oC[i].checked=false; 
+            }else{
+                oC[i].checked=true; 
+            }
+    }  
+    }
+
+// 选项卡
+var oBCard=document.getElementById('div3');
+var oCardInput=oBCard.getElementsByTagName('input')
+var oCardDiv=oBCard.getElementsByTagName('div');
+for(var i=0;i<oCardInput.length;i++){
+    oCardInput[i].index=i;
+
+    oCardInput[i].onclick=function(){
+        for(var i=0;i< oCardDiv.length;i++){
+            oCardInput[i].className='';
+            oCardDiv[i].style.display='none';
+        }
+
+        this.className='active';
+        oCardDiv[this.index].style.display='block';
+    };
+}
+
+// js简易日历
+var oTxt=document.getElementById('txt1');
+var oBtn5=document.getElementById('btn5');
+var oDiv5=document.getElementById('div5');
+oBtn5.onclick=function(){
+    oDiv5.innerHTML=oTxt.value;  //文字框输入什么，一点按钮就显示在柜里。
+    alert(oDiv5.innerHTML);  //一点按钮就显示一个跳出文字框并显示输入的文字框里的内空
+}
+
+var a=5;
+var b='5';
+alert(typeof(b));
+alert(a==b);
+
+
+}
+
+</script>
+
+
+
+</head>
+<body>
+ <!-- // js简易日历 -->
+<input type="text" id="txt1">
+<input type="button" id="btn5" value="设置文字">
+<div id="div5">
+
+</div>
+
+
+  <!-- 循环 -->
+<input id="btn1" type="button" value="全选"/><br>
+<input id="btn2" type="button" value="全不选"><br>
+<input id="btn3" type="button" value="反选"><br>
+<div id="div2">
+<input type="checkbox"><br>
+<input type="checkbox"><br>
+<input type="checkbox"><br>
+<input type="checkbox"><br>
+<input type="checkbox"><br>
+<input type="checkbox"><br>
+<input type="checkbox"><br>
+<input type="checkbox"><br>
+</div>  
+
+
+<div id="div3">
+    <input class="active" type="button" value="教育">
+    <input type="button" value="培训">
+    <input type="button" value="招生">
+    <input type="button" value="出国">
+    <div style="display:block;">111</div>
+    <div>222</div>
+    <div>333</div>
+    <div>444</div>
+</div>
+
+
+
+</body>
+</html>

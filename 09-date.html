@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>    
+    window.onload=function(){
+      var oYmd = document.getElementById('ymd');
+        var oDate2 = new Date();
+        oYmd.innerHTML = oDate2.getFullYear() + '年'
+            + (oDate2.getMonth()+1) + '月'
+            + oDate2.getDate() + '日' + '星期'
+            + oDate2.getDay()+'\n'
+            + oDate2.getHours()+':'
+            + oDate2.getMinutes()+':'
+            + oDate2.getSeconds();  
+    }
+    // year month day
+
+    </script>
+</head>
+<body>
+    <div class="row" style="width:80%;margin:auto">
+    <div id="ymd" style="margin:auto;font-size: 50px;background: #ff8000;"></div>
+</div>
+
+<div>超酷时钟</div>
+
+
+
+</body>
+</html>

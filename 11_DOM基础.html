@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>F11 DOM 基础</title>
+    <script src="/js/jquery-3.4.1.js"></script>
+    <style> 
+    #div1    {width: 200px;height: 200px;background-color: #ccc;margin:100px;position: relative;}
+    #div2{width: 100px;height: 100px;background-color: red;position: absolute;left: 50px;top: 50px;}
+    </style>
+</head>
+<body>
+<!-- F12 document.createElement('li'), parent-ul.appendChild(child-Node), 
+insertBefore('before-node','after.node') -->
+<p>F12 document.createElement('li'), parent-ul.appendChild(child-Node), 
+        insertBefore('before-node','after.node')</p>
+        <input type="text" name="" id="input_text">
+        <input type="button" value="创建li" id="btn3">
+        <ul id="ul3"></ul>
+
+
+<!-- 操纵元素属性attr -->
+<input type="text" id="txt1">
+<input type="button" value="按钮" id="btn1">
+<br>
+<ul id="ul_output"></ul>
+<ul id="ul_output2"></ul>
+
+<hr>
+
+<!-- firstChild,firstElementChild,lastChild,lastElementChild -->
+<ul id="ul2">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+</ul>
+
+<!-- //offsetParent -->
+<div id="div1">
+    <div id="div2"></div>
+</div>
+
+<!-- childNodes,nodeType,children -->
+    <ul id="ul1">
+        <li>dafdaf<a href="javascript:;">Hide</a></li>
+        <li>ddd<a href="javascript:;">Hide</a></li>
+        <li>3445<a href="javascript:;">Hide</a></li>
+        <li>dafdrtr444af<a href="javascript:;">Hide</a></li>
+        <li>yyyt444443222<a href="javascript:;">Hide</a></li>
+        <li>44432rrr<a href="javascript:;">Hide</a></li>
+        </ul>
+
+        
+    <script>    
+    window.onload=function(){
+        //F12 document.createElement('li'), parent-ul.appendChild(child-Node), 
+        // insertBefore('before-node','after.node')        
+        var input_text=document.getElementById('input_text');
+        var btn3=document.getElementById('btn3');
+        var ul3=document.getElementById('ul3');
+        var insertLi=ul3.getElementsByTagName('li');
+
+        btn3.addEventListener('click',function(){
+            var newLi3=document.createElement('li');
+            newLi3.innerHTML=input_text.value;
+            //ul3.appendChild(newLi3);
+            //插到前面insertBefore
+            ul3.insertBefore(newLi3,insertLi[0]);
+        });
+
+
+        //操纵元素属性attr
+          var txt1=document.getElementById('txt1');
+          var btn1=document.getElementById('btn1')
+          var ul_output=document.getElementById('ul_output');
+          var ul_output2=document.getElementById('ul_output2');
+
+           
+
+          btn1.onclick=function(e){
+            // txt1.value='ffaaa';
+            //txt1['value']='fafa';
+            //txt1.setAttribute('value','hahah');
+            //output.innerHTML=txt1.value;
+            //output.innerText=txt1.value;
+            //output.textContent=txt1.value;
+
+            // 不行，没用text,text(),val,val()
+            //output.text=txt1.value;
+            //output.value=txt1.value;
+            //output.val()=txt1.value;
+            //output.setAttribute('innerText',txt1.value);
+
+            //不能显示<b></b> tagName
+            newLi=document.createElement('li');
+           newLi.style.listStyle='none';
+            newLi.innerText=txt1.value;
+            ul_output2.appendChild(newLi);
+          }
+
+        var newLi2=document.createElement('li');
+        newLi2.style.listStyle='none';
+
+        txt1.addEventListener('keyup',inputContent);
+
+        function inputContent(e){
+            newLi2.innerHTML=e.target.value;
+            ul_output.appendChild(newLi2);
+        }
+
+
+        //firstChild,firstElementChild,lastChild,lastElementChild
+        var ul2=document.getElementById('ul2');
+        //行不通，把文字节点也算进去了: fisrtChild=ChildNodes
+        //ul2.firstChild.style.background='red';
+        //可以。fisrtElementChild=children
+        //ul2.firstElementChild.style.background='red';
+        
+        //看这个第一个元素是否存在
+        if (ul2.firstElementChild) {
+        ul2.firstElementChild.style.background='red';
+        }else{
+            ul2.firstChild.style.background='red';
+        }
+
+        //offsetParent
+        var div2=document.getElementById('div2');
+        //console.log(div2.offsetParent);
+        
+        //parentNodes,nodeType,children
+        var ul=document.getElementById('ul1');
+        var a=document.getElementsByTagName('a');
+
+        for (let i = 0; i < a.length; i++) {
+             a[i].onclick=function(){
+               this.parentNode.style.display='none';  
+             }
+        }
+
+        //9
+        // console.log(ul.childNodes.length); 
+        // console.log(ul.children.length); 
+
+        //childNodes.nodeType==1
+        for (let i = 0; i < ul.childNodes.length; i++) {
+            //childNodes.nodeType==1 is element-node
+            if (ul.childNodes[i].nodeType==1) {
+                ul.childNodes[i].style.background='green';
+            }
+        }
+
+        //children->get element nodes
+        for (let i = 0; i <ul.children.length; i++) {
+            ul.children[i].style.background='yellow';           
+       }
+
+       //console.log(ul.parentNode);
+       
+    }; 
+    </script>
+</body>
+</html>

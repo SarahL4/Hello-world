@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Show js 3 ways</title>
+
+    <link id="11" rel="stylesheet" href="../css/css1.css"  />
+    <!-- <link rel="stylesheet" href="../css/css2.css"  /> -->
+
+
+     <style>
+      #showhide {
+            width: 200px;
+            height: 200px;
+            background: red;
+            /* border: #ccc 1px solid; */
+            display: none;
+        }
+
+        #tolink {
+            width: 200px;
+            height: 200px;
+            /* background: red; */
+            border: #ccc 1px solid;
+            /* display: none; */
+        }
+        .box{
+            background: rgb(231, 160, 7);
+        }
+ 
+/* lextion 2 */
+#changeColor {
+            width: 200px;
+            height: 200px;
+            background: rgb(43, 226, 98);
+            /* border: #ccc 1px solid; */
+        }
+/* div改变样式 */
+#changePattern {
+            width: 200px;
+            height: 200px;
+            background: rgb(43, 226, 98);
+            /* border: #ccc 1px solid; */
+        }
+
+    </style> 
+</head>
+
+<body>
+
+
+
+
+<!-- 提取行间事件 -->
+<input type="button" id="btn1" value="BUTTON">
+
+    <!-- <input type="button" value="BUTTON" onclick="alert('button alert')" onmouseover="alert('a')"> -->
+    <!-- <input type="button" value="BUTTON" onclick="alert('button alert')" onmouseover="div1.style.display='block'" onmouseout="div1.style.display='none'"> -->
+
+   
+    <!-- <input type="checkbox">
+    <div id="div1">For safty</div> -->
+    <!-- <div id="div1" onmouseover="toGreen()" onmouseout="toRed()">
+    </div> -->
+   
+
+    <!-- <h1 onclick="alert('123')">Rubrik</h1>
+    <input type="button" value="按钮"> -->
+  
+
+
+    <!-- <script src="./js/01.js"></script> -->
+
+     <!-- 网页换肤 -->
+<input type="button" value="皮肤1" onclick="skin1()">
+<input type="button" value="皮肤2" onclick="skin2()">
+
+<input  id="txt1" type="text" value="aaa">
+<input type="button" value="改文字" onclick="SetText()">
+
+<!-- show and hide -->
+<input type="button" value="click and show" onclick="showHide()">
+<div id="showhide"></div>
+
+<input type="button" value="Link to blue" onclick="toBlue()">
+<div id="tolink"></div>
+
+<!-- lextion 2 card -->
+<input type="button" value="click to green" onclick="setColor('green')">
+<input type="button" value="click to red" onclick="setColor('red')">
+<input type="button" value="click to blue" onclick="setColor('blue')">
+<div id="changeColor"></div>
+
+<!-- 变样式 长宽高 -->
+<input type="button" value="变长" onclick="setStyle('width','400px')">
+<input type="button" value="变宽" onclick="setStyle('height','400px')">
+<input type="button" value="变lan" onclick="setStyle('background','blue')">
+<div id="changePattern"></div>
+
+
+
+
+    <script>
+        // 循环
+// var i=0;
+// while(i<5){
+//     alert(i);
+//     i++;
+// }
+
+// for(var i=0; i<5;i++){
+//     alert(i);
+// }
+
+
+
+
+//提取行间事件
+var oB=document.getElementById('btn1')
+function abc(){
+    alert('s');
+}
+
+oB.onclick=abc;
+
+// change skin color
+
+
+//lextion 2 change color card
+// function toGreen(){
+//     var oD=document.getElementById('changeColor');
+//     oD.style.background='green';
+// }
+// function toRed(){
+//     var oD=document.getElementById('changeColor');
+//     oD.style.background='red';
+// }
+// function toBlue(){
+//     var oD=document.getElementById('changeColor');
+//     oD.style.background='blue';
+// }
+
+// 函数传参
+function setColor(color){
+    var oD=document.getElementById('changeColor');
+    oD.style.background=color;
+}
+
+setColor('green')
+
+// 改变样式
+function setStyle(name,value){
+    // var a='style.width';
+    var oD=document.getElementById('changePattern');
+    // oD.style.background=color;
+    oD.style[name]=value;
+}
+
+
+
+
+        // body之前
+        // alert('内部');
+
+        // function toGreen() {
+        //     var oDiv=document.getElementById('div1');
+        //     oDiv.style.width = '300px';
+        //     oDiv.style.height = '300px';
+        //     oDiv.style.background = 'green';
+        // }
+
+        // function toRed() {
+        //     var oDiv=document.getElementById('div1');
+
+        //     oDiv.style.width = '200px';
+        //     oDiv.style.height = '200px';
+        //     oDiv .style.background = 'red';
+        // }
+
+
+        function skin1(){
+    var oL=document.getElementById('11');
+    oL.href='../css/css1.css';
+}
+function skin2(){
+    var oL=document.getElementById('11');
+    oL.href='../css/css2.css';
+}
+
+function SetText(){
+    var oTxt=document.getElementById('txt1');
+    oTxt.value="changed text";
+}
+
+function showHide(){
+    var oTxt=document.getElementById('showhide');
+    if(oTxt.style.display=='block')
+    {
+        oTxt.style.display='none';
+    }else{
+        oTxt.style.display='block';
+    }
+}
+
+function toBlue(){
+    var oTxt=document.getElementById('tolink');
+    oTxt.className='box';
+}  
+    </script>
+</body>
+
+</html>
